@@ -1,0 +1,271 @@
+{
+  "chunks": 33,
+  "questions": 20,
+  "retrieval": {
+    "bm25_stemmed": {
+      "hit@1": 0.5,
+      "hit@3": 0.9,
+      "mrr": 0.6958333333333333
+    },
+    "bm25_plain": {
+      "hit@1": 0.5,
+      "hit@3": 0.7,
+      "mrr": 0.6224999999999999
+    },
+    "keyword_overlap": {
+      "hit@1": 0.45,
+      "hit@3": 0.7,
+      "mrr": 0.585
+    }
+  },
+  "bm25_misses": [
+    {
+      "question": "How many of the attacks were stopped by the verifier?",
+      "gold_rank": 2,
+      "top1": [
+        "ssi_THREAT_MODEL.md",
+        "Threat model: issuer / holder / verifier"
+      ]
+    },
+    {
+      "question": "Which kinds of attackers are considered in the security analysis?",
+      "gold_rank": 2,
+      "top1": [
+        "ssi_THREAT_MODEL.md",
+        "Threat model: issuer / holder / verifier"
+      ]
+    },
+    {
+      "question": "Which identifier scheme do the actors use?",
+      "gold_rank": 2,
+      "top1": [
+        "ssi_THREAT_MODEL.md",
+        "Threat model: issuer / holder / verifier"
+      ]
+    },
+    {
+      "question": "For how many seconds does a challenge stay usable?",
+      "gold_rank": null,
+      "top1": [
+        "ssi_THREAT_MODEL.md",
+        "Known limits (measured, not hidden)"
+      ]
+    },
+    {
+      "question": "Was the service actually deployed on a Kubernetes cluster?",
+      "gold_rank": 3,
+      "top1": [
+        "devops_README.md",
+        "Sensor platform: containerised API with monitoring, CI/CD and Kubernetes"
+      ]
+    },
+    {
+      "question": "Which metric drives the autoscaler and what replica range is allowed?",
+      "gold_rank": 2,
+      "top1": [
+        "devops_README.md",
+        "Lessons learned and known limits"
+      ]
+    },
+    {
+      "question": "Which post-hoc method helped the naive Bayes classifier most?",
+      "gold_rank": 4,
+      "top1": [
+        "ml_README.md",
+        "Trustworthy ML: calibration, abstention, robustness and explanation stability"
+      ]
+    },
+    {
+      "question": "Why is the log-likelihood of isotonic regression so poor?",
+      "gold_rank": 2,
+      "top1": [
+        "ml_README.md",
+        "Trustworthy ML: calibration, abstention, robustness and explanation stability"
+      ]
+    },
+    {
+      "question": "Do calibrated probabilities stay reliable when the inputs get noisy?",
+      "gold_rank": 2,
+      "top1": [
+        "ml_README.md",
+        "Trustworthy ML: calibration, abstention, robustness and explanation stability"
+      ]
+    },
+    {
+      "question": "Under which user id does the container process run?",
+      "gold_rank": 3,
+      "top1": [
+        "devops_README.md",
+        "Lessons learned and known limits"
+      ]
+    }
+  ],
+  "answers": {
+    "generator": "extractive (offline)",
+    "key_fact_rate": 0.5,
+    "valid_citation_rate": 1.0,
+    "seconds_total": 0.01
+  },
+  "rows": [
+    {
+      "question": "How many of the attacks were stopped by the verifier?",
+      "answer": "Attacks include: changed claim value, extended expiry, rogue issuer, replay, forwarding to another verifier, stolen credential, revoked / expired / not-yet-valid credential, forged status list, unreachable status list (fail closed), injected and duplicated disclosures. [2] This document turns threats to verifiable credentials into **requirements per actor**, and links each requirement to the code that implements it and to the attack scenario that tests it (`attacks/run_attacks.py`, results in `results/attack_results.md`). [1] - **17 / 17 attacks blocked**, honest presentation accepted, 0 unexpected outcomes. [2]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "How does an issuer revoke a credential?",
+      "answer": "R-V10 list must be signed by the credential's issuer [1] | T-I2 issuer learns where the credential is used [1] ``` Issuer (certification body) Holder (technician wallet) Verifier (CNC machine controller) ───────────────────────── ────────────────────────── ───────────────────────────────── signs credential (Ed25519) ──VC──▶ stores VC + disclosures publishes signed status list │ │ │ ◀── nonce + verifier DID ── challenge() │ └── signed presentation ───▶ verify() └──────────── status list (fetched by verifier) ────────────▶ ``` Assets: the credential's claims (personal data), the right to open the machine's maintenance mode, and the three private keys. [3]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "What does the verifier do when it cannot fetch the revocation list?",
+      "answer": "**Revocation delay.** A verifier with an old cached list accepts a just-revoked credential. [4] R-I4 publish a signed revocation list; R-V10 check it [1] | T-T3 fake status list hides a revocation [1]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Can verifiers collude to track the same person?",
+      "answer": "**Linkability.** Two colluding verifiers see the same credential id and issuer signature, so they can link two visits to one person. [1] Attacker model: a network attacker who can read, copy, replay and change messages; a malicious holder who wants more privileges; a rogue issuer; an honest-but-curious verifier, or several verifiers that collude. [2] Client and server ran **on the same machine**. [3]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Which kinds of attackers are considered in the security analysis?",
+      "answer": "The threat list is my own STRIDE analysis, informed by the security and privacy considerations of the W3C *Verifiable Credentials Data Model 2.0* and the *Decentralized Identifiers (DIDs) v1.0* specifications. [1] To prepare for research on SSI security, in particular the Fraunhofer ISST master thesis topic on deriving actor requirements from the W3C threat model. [3] It builds on my earlier work with PKI, mTLS, Ed25519 and STRIDE in my 5G/IoT security labs. [3]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Which identifier scheme do the actors use?",
+      "answer": "Use a JCS library or the W3C Data Integrity suites [3]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "For how many seconds does a challenge stay usable?",
+      "answer": "Redis), rate limiting on `challenge()` | [1] ``` Issuer (certification body) Holder (technician wallet) Verifier (CNC machine controller) ───────────────────────── ────────────────────────── ───────────────────────────────── signs credential (Ed25519) ──VC──▶ stores VC + disclosures publishes signed status list │ │ │ ◀── nonce + verifier DID ── challenge() │ └── signed presentation ───▶ verify() └──────────── status list (fetched by verifier) ────────────▶ ``` Assets: the credential's claims (personal data), the right to open the machine's maintenance mode, and the three private keys. [3]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "What 95th percentile latency did Prometheus report inside the application?",
+      "answer": "At the same moment Prometheus showed a **server-side p95 of 8.4 ms** (measured inside the app). [1] ``` machines ──POST /readings──▶ sensor-api (FastAPI) ──/metrics──▶ Prometheus ──▶ Grafana dashboard │ └── alert rules (latency, 5xx, anomaly burst) GitHub Actions / Jenkins: ruff → pytest → docker build → smoke test → Trivy scan → deploy ``` [2] Most of the latency was therefore waiting time *outside* the handler. [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Why were async request handlers faster?",
+      "answer": "| **async handlers, 1 worker** [1] | async handlers, 4 workers [1] The handlers do no I/O, so `async def` skips FastAPI's thread pool and avoids GIL contention between threads. [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "What goes wrong with counters when uvicorn runs several worker processes?",
+      "answer": "- **Multi-worker metrics:** with `WEB_CONCURRENCY > 1`, every worker has its own Prometheus counters, and `/metrics` returns whichever worker answered. [1] That gave **+35 % throughput** on one worker, about the same gain as going from 1 to 4 sync worker processes. [2] The fix is `prometheus_client` multiprocess mode or one worker per container scaled by Kubernetes; the manifests use the second option. [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Was the service actually deployed on a Kubernetes cluster?",
+      "answer": "A small industrial-IoT service (machines send temperature readings, the API flags anomalies with a rolling z-score), built to practise the **full delivery chain**: tests → container → CI pipeline → monitoring → Kubernetes, plus a **performance study** with measured numbers. [1] - **Not done in this session:** the Kubernetes manifests were written but **not deployed**. [3] Deployment (2 replicas, probes, limits, restricted securityContext), Service, HPA (CPU 70 %, 2–6 pods), PodDisruptionBudget [2]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Which metric drives the autoscaler and what replica range is allowed?",
+      "answer": "6 tests: anomaly detection, validation, 404, metric labels [2]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Which port serves the dashboards when running with compose?",
+      "answer": "```bash docker compose up -d --build # API http://localhost:8000/docs # Prometheus http://localhost:9090 # Grafana http://localhost:3001 (dashboard \"Sensor platform / Sensor API\"; port set by GRAFANA_PORT) python loadtest/load.py --concurrency 16 --duration 20 pytest -q ``` Kubernetes (minikube): ```bash minikube start --addons=metrics-server minikube image load sensor-api:local kubectl apply -k k8s/ kubectl get hpa sensor-api -w ``` [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Which post-hoc method helped the naive Bayes classifier most?",
+      "answer": "Four models: logistic regression, Gaussian naive Bayes, random forest, gradient boosting. [1] | Gaussian naive Bayes [2] Naive Bayes gains much less, because its saturated confidences carry little ranking information (see finding 4). [2]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Why is the log-likelihood of isotonic regression so poor?",
+      "answer": "| ECE (own implementation), Brier score, NLL, reliability diagrams; post-hoc **temperature scaling, Platt scaling, isotonic regression** (own implementations) [1] **Isotonic regression has the lowest ECE in 3 of 4 models, yet the worst NLL of the three calibrators in all 4** (logistic regression: 0.225 ± 0.236 vs 0.066 uncalibrated). [3] This project measures four aspects of trustworthiness on the Wisconsin breast-cancer dataset (569 tumours, 30 features, bundled with scikit-learn, so nothing to download): [1]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "By how much does the error fall if a fifth of the cases are sent to a human?",
+      "answer": "![Risk-coverage curves](results/risk_coverage.png) If the 20 % least confident cases go to a human expert, the logistic-regression error drops from 2.3 % to 0.1 %. [1] Error, 90 % most confident [1] Error, 80 % most confident [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Do calibrated probabilities stay reliable when the inputs get noisy?",
+      "answer": "Q1 Are the probabilities honest? [1] | Q3 Does it hold under noisy measurements? [1] | Q4 Are explanations reliable? [1]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "How consistent are the most important features between data splits?",
+      "answer": "Mean Jaccard overlap of top-5 features between splits [1] The dataset has strongly correlated features (radius, perimeter and area measure almost the same thing), so permutation importance spreads credit between them almost arbitrarily. [1] | permutation importance over 30 splits; top-5 stability (Jaccard) and agreement between two models [2]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "How was the data divided for training, calibration and testing?",
+      "answer": "![ECE under noise](results/shift_ece.png) **Calibration does not transfer to shifted data.** Platt scaling fitted on clean data leaves naive Bayes at ECE 0.356 under noise 1.0. [3] **Protocol.** 30 stratified random splits: 60 % train / 20 % calibration / 20 % test. [1] Calibrators see only the calibration split. [1]",
+      "generator": "extractive (offline)",
+      "key_fact": true,
+      "valid_citations": true,
+      "notes": []
+    },
+    {
+      "question": "Under which user id does the container process run?",
+      "answer": "The fix is `prometheus_client` multiprocess mode or one worker per container scaled by Kubernetes; the manifests use the second option. [1] - **State in memory:** the anomaly window lives in each process. [1] The minikube base-image download (520 MB) stalled on my connection, and the CI workflow has not run on GitHub yet. [1]",
+      "generator": "extractive (offline)",
+      "key_fact": false,
+      "valid_citations": true,
+      "notes": []
+    }
+  ]
+}

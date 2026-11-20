@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+# course slides and other private documents: index them locally, never commit them
+private/

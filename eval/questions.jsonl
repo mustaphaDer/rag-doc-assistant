@@ -1,0 +1,20 @@
+{"question": "How many of the attacks were stopped by the verifier?", "gold": [["ssi_README.md", "Results (measured on this machine)"]], "key_fact": "17"}
+{"question": "How does an issuer revoke a credential?", "gold": [["ssi_README.md", "What is implemented"], ["ssi_THREAT_MODEL.md", "Threats and requirements"]], "key_fact": "status list"}
+{"question": "What does the verifier do when it cannot fetch the revocation list?", "gold": [["ssi_THREAT_MODEL.md", "Threats and requirements"], ["ssi_README.md", "Results (measured on this machine)"]], "key_fact": "fail closed"}
+{"question": "Can verifiers collude to track the same person?", "gold": [["ssi_THREAT_MODEL.md", "Known limits (measured, not hidden)"], ["ssi_README.md", "Results (measured on this machine)"]], "key_fact": "link"}
+{"question": "Which kinds of attackers are considered in the security analysis?", "gold": [["ssi_THREAT_MODEL.md", "System and trust boundaries"]], "key_fact": "colluding"}
+{"question": "Which identifier scheme do the actors use?", "gold": [["ssi_README.md", "What is implemented"]], "key_fact": "did:key"}
+{"question": "For how many seconds does a challenge stay usable?", "gold": [["ssi_README.md", "What is implemented"], ["ssi_THREAT_MODEL.md", "Threats and requirements"]], "key_fact": "120"}
+{"question": "What 95th percentile latency did Prometheus report inside the application?", "gold": [["devops_README.md", "Performance study (measured on this laptop)"]], "key_fact": "8.4"}
+{"question": "Why were async request handlers faster?", "gold": [["devops_README.md", "Performance study (measured on this laptop)"]], "key_fact": "thread pool"}
+{"question": "What goes wrong with counters when uvicorn runs several worker processes?", "gold": [["devops_README.md", "Lessons learned and known limits"]], "key_fact": "multiprocess"}
+{"question": "Was the service actually deployed on a Kubernetes cluster?", "gold": [["devops_README.md", "Lessons learned and known limits"]], "key_fact": "not"}
+{"question": "Which metric drives the autoscaler and what replica range is allowed?", "gold": [["devops_README.md", "What is in the repo"]], "key_fact": "70"}
+{"question": "Which port serves the dashboards when running with compose?", "gold": [["devops_README.md", "Run it"]], "key_fact": "3001"}
+{"question": "Which post-hoc method helped the naive Bayes classifier most?", "gold": [["ml_README.md", "Q1 Calibration (test set, 30 splits)"]], "key_fact": "temperature"}
+{"question": "Why is the log-likelihood of isotonic regression so poor?", "gold": [["ml_README.md", "Q1 Calibration (test set, 30 splits)"]], "key_fact": "82"}
+{"question": "By how much does the error fall if a fifth of the cases are sent to a human?", "gold": [["ml_README.md", "Q2 Selective prediction (Platt-calibrated, 30 splits)"]], "key_fact": "0.1"}
+{"question": "Do calibrated probabilities stay reliable when the inputs get noisy?", "gold": [["ml_README.md", "Q3 Robustness to measurement noise"]], "key_fact": "0.356"}
+{"question": "How consistent are the most important features between data splits?", "gold": [["ml_README.md", "Q4 Explanation stability (permutation importance, 30 splits)"]], "key_fact": "0.28"}
+{"question": "How was the data divided for training, calibration and testing?", "gold": [["ml_README.md", "Trustworthy ML: calibration, abstention, robustness and explanation stability"]], "key_fact": "60"}
+{"question": "Under which user id does the container process run?", "gold": [["devops_README.md", "What is in the repo"]], "key_fact": "10001"}
